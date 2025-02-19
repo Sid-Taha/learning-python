@@ -156,10 +156,10 @@ This document covers Python from the basics to advanced topics, complete with on
 - **Definition:** A tuple is an ordered, immutable sequence of values.
 - **Example:**
   ```python
-  coordinates: tuple[int, int] = (10, 20)
-  print(coordinates[0])  # Output: 10
+  names: tuple[str, str, str] = ("Taha", "Ahmed", "Alex")
+  print(names[0])  # Output: Taha
   # Tuples support slicing like lists.
-  print(coordinates[:1]) # Output: (10,)
+  print(names[0:2]) # Output: ("Taha", "Ahmed")
   ```
 
 
