@@ -256,9 +256,9 @@ print(my_set)
 
 Yes, because sets are **unordered collections**, they don’t support direct indexing like lists. However, sets have **specific use cases** where they are extremely useful:
 
----
 
-### ✅ **Why Use Sets in Python?**
+
+#### ✅ **Why Use Sets in Python?**
 1. **Uniqueness Guarantee (No Duplicates)**
    - If you need to store unique values and automatically remove duplicates, sets are perfect.
    ```python
