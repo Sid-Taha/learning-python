@@ -256,7 +256,7 @@ print(my_set)
 
 Yes, because sets are **unordered collections**, they don’t support direct indexing like lists. However, sets have **specific use cases** where they are extremely useful:
 
-
+---
 
 #### ✅ **Why Use Sets in Python?**
 1. **Uniqueness Guarantee (No Duplicates)**
@@ -335,6 +335,46 @@ Use a `set` when:
       print(f"{key}: {value}")
   ```
 
+The line:
+
+```python
+print(my_dict.get("name", "Default Name"))
+```
+
+is using the **`.get()` method** of a dictionary to **safely retrieve** the value of the `"name"` key.
+
+---
+
+#### ✅ **Why Use `.get()` Instead of `my_dict["name"]`?**
+If the key **exists**, `.get()` returns its value:
+```python
+my_dict = {"name": "Taha", "age": 28}
+print(my_dict.get("name", "Default Name"))  # Output: Taha
+```
+
+If the key **does not exist**, `.get()` **does not raise an error** (unlike `my_dict["key"]`); instead, it returns the **default value**:
+```python
+my_dict = {"age": 28}
+print(my_dict.get("name", "Default Name"))  # Output: Default Name
+```
+
+---
+
+### ❌ **If You Use `my_dict["name"]` Without `.get()`**
+If the key **does not exist**, Python will throw a `KeyError`:
+```python
+my_dict = {"age": 28}
+print(my_dict["name"])  # ❌ KeyError: 'name'
+```
+
+---
+
+### 🔥 **Key Takeaway**
+Use `.get(key, default_value)` when:
+- You want to avoid **errors** if the key is missing.
+- You need a **default fallback value** when the key is not found.
+
+Would you like more examples? 🚀
 ---
 
 ## 8. Comprehensions
