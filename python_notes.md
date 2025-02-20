@@ -8,7 +8,7 @@ This document covers Python from the basics to advanced topics, complete with on
 
 ---
 
-## 1. Python Basics
+# 1. Python Basics
 
 ### 1.1 Printing & Memory Check
 - **Definition:** Print statements display output and the built-in `id()` returns the memory address of an object.
@@ -65,7 +65,7 @@ This document covers Python from the basics to advanced topics, complete with on
 
 ---
 
-## 2. Strings & String Methods
+# 2. Strings & String Methods
 
 - **Definition:** A string is a sequence of characters enclosed in quotes.
 - **Common Methods:**  
@@ -88,7 +88,7 @@ This document covers Python from the basics to advanced topics, complete with on
 
 ---
 
-## 3. Lists (Dynamic Arrays)
+# 3. Lists (Dynamic Arrays)
 
 - **Definition:** A list is an ordered, mutable collection of items.
 - **Common Operations & Methods:**
@@ -114,7 +114,7 @@ This document covers Python from the basics to advanced topics, complete with on
 
 ---
 
-## 4. Loops
+# 4. Loops
 
 ### 4.1 For Loop
 - **Definition:** Iterates over items of a sequence.
@@ -151,7 +151,7 @@ This document covers Python from the basics to advanced topics, complete with on
 
 ---
 
-## 5. Tuple (Immutable List)
+# 5. Tuple (Immutable List)
 
 - **Definition:** A tuple is an ordered, immutable sequence of values.
 - **Example:**
@@ -195,7 +195,7 @@ print(my_tuple[1:4])  # Output: (20, 30, 40)
 
 ---
 
-## 6. Set (Unique Unordered Collection)
+# 6. Set (Unique Unordered Collection)
 
 - **Definition:** A set is an unordered collection of unique items.
 - **Example:**
@@ -272,7 +272,7 @@ Yes, because sets are **unordered collections**, they don’t support direct ind
    my_set = {"apple", "banana", "cherry"}
    print("banana" in my_set)  # Output: True (Fast lookup)
    ```
-# **Why Do Lists and Sets Have Different Searching Times?**
+## **Why Do Lists and Sets Have Different Searching Times?**
 The key reason lists and sets have different searching times is their underlying data structures.
 
 ## **1. Lists (`list`)**  
@@ -286,7 +286,7 @@ The key reason lists and sets have different searching times is their underlying
 
 ---
 
-# **What is Hashing?**
+## **What is Hashing?**
 Hashing is a technique used to map data (like strings or numbers) to a fixed-size value called a **hash code** or **hash value** using a **hash function**.
 
 ## **Understanding Hashing with an Example**
@@ -302,13 +302,13 @@ When searching for "Charlie," instead of checking each name one by one, the syst
 
 ---
 
-# **What is Non-Hashing?**
+## **What is Non-Hashing?**
 Non-hashing refers to data structures that do not use hash functions for lookup, such as:
 - **Lists (`list`)** → Use linear search (**O(n)**)
 
 ---
 
-# **Key Takeaways**
+## **Key Takeaways**
 - **Hashing is fast** but requires extra memory.
 - **Lists (non-hashing) are slower** but maintain order.
 - If you need **fast lookups**, use a **set** or **dictionary (`dict`)**.
@@ -316,7 +316,7 @@ Non-hashing refers to data structures that do not use hash functions for lookup,
 
 ---
 
-# **What is a Bucket?**
+## **What is a Bucket?**
 A **bucket** is a storage location inside a **hash table** where multiple values can be stored if they share the same **hash code**.
 
 - When inserting a value in a set or dictionary, Python computes a **hash value** using the built-in `hash()` function.
@@ -325,7 +325,7 @@ A **bucket** is a storage location inside a **hash table** where multiple values
 
 ---
 
-# **How Do Multiple Values Share the Same Hash Code?**
+## **How Do Multiple Values Share the Same Hash Code?**
 Since the number of possible hash values is large but not infinite, and the number of buckets is fixed, **different values can sometimes get the same hash value modulo the number of buckets**.
 
 ## **Example of Hash Collisions**
@@ -342,7 +342,7 @@ Let's say our hash function maps values to only **5 buckets**:
 
 ---
 
-# **How Does Python Handle Hash Collisions?**
+## **How Does Python Handle Hash Collisions?**
 Python resolves hash collisions using **chaining** (linked lists inside buckets):
 
 1. Each bucket starts as **empty**.
@@ -355,7 +355,7 @@ Python resolves hash collisions using **chaining** (linked lists inside buckets)
 
 ---
 
-# **Example of Hash Table with Buckets**
+## **Example of Hash Table with Buckets**
 Imagine we have **3 buckets**, and we insert three names:
 
 | Name     | Hash Code | Bucket (Hash Code % 3) |
@@ -379,7 +379,7 @@ If we search for "Charlie":
 
 ---
 
-# **Why Don't We Always Get Collisions?**
+## **Why Don't We Always Get Collisions?**
 Python's hash table is **optimized**:
 - It dynamically **resizes** when too many elements are added.
 - It increases the number of **buckets**, reducing collisions.
@@ -387,7 +387,7 @@ Python's hash table is **optimized**:
 
 ---
 
-# **Key Takeaways**
+## **Key Takeaways**
 ✔ **Buckets** store values based on their hash codes.  
 ✔ **Hash collisions** happen when multiple values share the same bucket.  
 ✔ Python resolves collisions using **chaining** (linked lists inside buckets).  
@@ -435,7 +435,7 @@ Use a `set` when:
 
 ---
 
-## 7. Dictionary (Key-Value Pairs)
+# 7. Dictionary (Key-Value Pairs)
 
 - **Definition:** A dictionary stores data in key-value pairs.
 - **Examples:**
@@ -502,7 +502,7 @@ Use `.get(key, default_value)` when:
 Would you like more examples? 🚀
 ---
 
-## 8. Comprehensions
+# 8. Comprehensions
 
 - **Definition:** A concise way to create lists, sets, or dictionaries.
   
@@ -525,7 +525,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 9. Lambda, Map, Filter, Reduce
+# 9. Lambda, Map, Filter, Reduce
 
 ### 9.1 Lambda (Anonymous Function)
 - **Definition:** A small anonymous function defined with the `lambda` keyword.
@@ -560,7 +560,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 10. Functions
+# 10. Functions
 
 - **Definition:** A block of reusable code that performs a specific task.
 - **Example:**
@@ -582,7 +582,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 11. Modules & Imports
+# 11. Modules & Imports
 
 - **Definition:** Modules allow you to organize and reuse code across multiple files.
 - **Examples:**
@@ -601,7 +601,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 12. Error/Exception Handling
+# 12. Error/Exception Handling
 
 - **Definition:** Handling errors gracefully using try-except blocks.
 - **Examples:**
@@ -621,7 +621,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 13. Object-Oriented Programming (OOP)
+# 13. Object-Oriented Programming (OOP)
 
 - **Definition:** A programming paradigm based on the concept of "objects" that contain data and methods.
   
@@ -724,7 +724,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 14. File Handling
+# 14. File Handling
 
 - **Definition:** Reading from and writing to files.
 - **Examples:**
@@ -741,7 +741,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 15. Advanced Topics
+# 15. Advanced Topics
 
 ### 15.1 Decorators
 - **Definition:** A decorator is a function that wraps another function to extend its behavior.
@@ -782,7 +782,7 @@ Would you like more examples? 🚀
 
 ---
 
-## 16. Conclusion
+# 16. Conclusion
 
 - This guide has covered the **core concepts** of Python—from variables and data types to advanced topics like decorators and generators.
 - **Next steps:** Explore databases, APIs, machine learning, and web development frameworks (e.g., FastAPI, Django, Flask) to further enhance your skills.
