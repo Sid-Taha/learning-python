@@ -511,6 +511,33 @@ Use `.get(key, default_value)` when:
   squared = [x**2 for x in range(10)]
   print(squared)
   ```
+  
+
+### **Example Use Cases:**
+#### ✅ Common Use Case 1: Squaring Numbers
+```python
+squared = [x**2 for x in range(10)]
+```
+
+#### ✅ Common Use Case 2: Filtering Even Numbers
+```python
+even_numbers = [x for x in range(20) if x % 2 == 0]
+```
+**Output:** `[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]`
+
+#### ✅ Common Use Case 3: Converting Strings to Uppercase
+```python
+words = ["hello", "world", "python"]
+uppercase_words = [word.upper() for word in words]
+```
+**Output:** `['HELLO', 'WORLD', 'PYTHON']`
+
+---
+
+### **Conclusion**
+🔹 **Yes**, list comprehensions are frequently used in Python because they are fast, concise, and readable.  
+🔹 However, avoid using them when the logic is too complex, as it can reduce readability. 
+  
 
 ### 8.2 Set & Dictionary Comprehension
 - **Examples:**
@@ -521,6 +548,57 @@ Use `.get(key, default_value)` when:
   squared_dict = {x: x**2 for x in range(5)}
   print(squared_dict)
   ```
+### **Set & Dictionary Comprehension: Use Cases**
+
+#### **1️⃣ Set Comprehension Example: Unique Values**
+A **set comprehension** is useful when you need a **collection of unique values**.
+
+```python
+unique_nums = {x for x in range(10)}
+print(unique_nums)
+```
+🔹 **Use Case:** Removing duplicates from a list.
+
+```python
+numbers = [1, 2, 3, 4, 5, 5, 6, 6, 7]
+unique_numbers = {x for x in numbers}  
+print(unique_numbers)  
+```
+**Output:** `{1, 2, 3, 4, 5, 6, 7}`  
+
+✅ **Why use set comprehension?**  
+- Removes duplicate values automatically.  
+- Faster than converting a list to a set manually.
+
+---
+
+#### **2️⃣ Dictionary Comprehension Example: Mapping Values**
+A **dictionary comprehension** is useful when you need to create a key-value mapping.
+
+```python
+squared_dict = {x: x**2 for x in range(5)}
+print(squared_dict)
+```
+**Output:** `{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}`
+
+🔹 **Use Case:** Counting word frequency in a sentence.
+
+```python
+sentence = "hello world hello python"
+word_count = {word: sentence.split().count(word) for word in sentence.split()}
+print(word_count)
+```
+**Output:** `{'hello': 2, 'world': 1, 'python': 1}`
+
+✅ **Why use dictionary comprehension?**  
+- Makes key-value pairs efficiently.  
+- Useful for transforming or filtering data.
+
+---
+
+### **When to Use These?**
+✔ **Set Comprehension:** When you need unique values.  
+✔ **Dictionary Comprehension:** When you need to create mappings efficiently.  
 
 ---
 
