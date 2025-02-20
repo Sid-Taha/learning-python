@@ -548,7 +548,7 @@ uppercase_words = [word.upper() for word in words]
   squared_dict = {x: x**2 for x in range(5)}
   print(squared_dict)
   ```
-### **Set & Dictionary Comprehension: Use Cases**
+### **Example Use Cases:**
 
 #### **1️⃣ Set Comprehension Example: Unique Values**
 A **set comprehension** is useful when you need a **collection of unique values**.
