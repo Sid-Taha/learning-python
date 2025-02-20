@@ -272,6 +272,131 @@ Yes, because sets are **unordered collections**, they don’t support direct ind
    my_set = {"apple", "banana", "cherry"}
    print("banana" in my_set)  # Output: True (Fast lookup)
    ```
+# **Why Do Lists and Sets Have Different Searching Times?**
+The key reason lists and sets have different searching times is their underlying data structures.
+
+## **1. Lists (`list`)**  
+- Lists are implemented as **dynamic arrays**.
+- Searching for an element requires checking each item one by one (**linear search**), making the time complexity **O(n)** in the worst case.
+
+## **2. Sets (`set`)**  
+- Sets use a **hash table** (unordered collection).
+- When searching for an element, Python computes its **hash value** and looks it up in constant time, making the average time complexity **O(1)**.
+- However, in the worst case (when many elements collide in the same hash bucket), lookup time can degrade to **O(n)**.
+
+---
+
+# **What is Hashing?**
+Hashing is a technique used to map data (like strings or numbers) to a fixed-size value called a **hash code** or **hash value** using a **hash function**.
+
+## **Understanding Hashing with an Example**
+Imagine you are storing names in a dictionary. Instead of searching through the entire list, a **hash function** converts each name into a unique index:
+
+| Name       | Hash Value (Index) |
+|------------|------------------|
+| "Alice"    | 102              |
+| "Bob"      | 215              |
+| "Charlie"  | 178              |
+
+When searching for "Charlie," instead of checking each name one by one, the system directly jumps to index **178**, making it much faster.
+
+---
+
+# **What is Non-Hashing?**
+Non-hashing refers to data structures that do not use hash functions for lookup, such as:
+- **Lists (`list`)** → Use linear search (**O(n)**)
+
+---
+
+# **Key Takeaways**
+- **Hashing is fast** but requires extra memory.
+- **Lists (non-hashing) are slower** but maintain order.
+- If you need **fast lookups**, use a **set** or **dictionary (`dict`)**.
+- If **order matters**, use a **list** or **tree-based structures**.
+
+---
+
+# **What is a Bucket?**
+A **bucket** is a storage location inside a **hash table** where multiple values can be stored if they share the same **hash code**.
+
+- When inserting a value in a set or dictionary, Python computes a **hash value** using the built-in `hash()` function.
+- This **hash value** determines which **bucket** the value will go into.
+- Because hash values are mapped to a **limited number of buckets**, multiple values may end up in the same bucket, causing a **hash collision**.
+
+---
+
+# **How Do Multiple Values Share the Same Hash Code?**
+Since the number of possible hash values is large but not infinite, and the number of buckets is fixed, **different values can sometimes get the same hash value modulo the number of buckets**.
+
+## **Example of Hash Collisions**
+Let's say our hash function maps values to only **5 buckets**:
+
+| Value    | Hash Code | Bucket (Hash Code % 5) |
+|----------|----------|----------------------|
+| "Alice"  | 102      | 102 % 5 = **2** |
+| "Charlie"| 178      | 178 % 5 = **3** |
+| "Eve"    | 157      | 157 % 5 = **2** |
+| "Tom"    | 45       | 45 % 5 = **0** |
+
+- Here, **"Alice"** and **"Eve"** both go into **bucket 2**, creating a **hash collision**.
+
+---
+
+# **How Does Python Handle Hash Collisions?**
+Python resolves hash collisions using **chaining** (linked lists inside buckets):
+
+1. Each bucket starts as **empty**.
+2. When inserting an item:
+   - If the bucket is empty, the item is placed directly.
+   - If the bucket is already occupied (**collision**), Python stores the new value in a **linked list** at that bucket.
+3. When searching for an item:
+   - Python computes the **hash value** and finds the correct bucket.
+   - If multiple values are in the same bucket, it **checks each one sequentially** inside the bucket.
+
+---
+
+# **Example of Hash Table with Buckets**
+Imagine we have **3 buckets**, and we insert three names:
+
+| Name     | Hash Code | Bucket (Hash Code % 3) |
+|----------|----------|----------------------|
+| "Alice"  | 102      | 102 % 3 = **0** |
+| "Bob"    | 205      | 205 % 3 = **2** |
+| "Charlie"| 306      | 306 % 3 = **0** |
+
+Now, **bucket 0** contains both "Alice" and "Charlie":
+
+```plaintext
+Bucket 0 → ["Alice", "Charlie"]
+Bucket 1 → []
+Bucket 2 → ["Bob"]
+```
+
+If we search for "Charlie":
+1. Compute the hash (`306`).
+2. Find bucket `0`.
+3. Check each item in the bucket to find "Charlie".
+
+---
+
+# **Why Don't We Always Get Collisions?**
+Python's hash table is **optimized**:
+- It dynamically **resizes** when too many elements are added.
+- It increases the number of **buckets**, reducing collisions.
+- It uses a **prime number of buckets** for better distribution.
+
+---
+
+# **Key Takeaways**
+✔ **Buckets** store values based on their hash codes.  
+✔ **Hash collisions** happen when multiple values share the same bucket.  
+✔ Python resolves collisions using **chaining** (linked lists inside buckets).  
+✔ The more buckets available, the fewer collisions occur.  
+
+Would you like me to show a Python example of how a simple hash table with buckets works?
+
+
+
 
 3. **Set Operations (Union, Intersection, Difference)**
    - Sets allow powerful mathematical operations:
