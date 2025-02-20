@@ -499,7 +499,6 @@ Use `.get(key, default_value)` when:
 - You want to avoid **errors** if the key is missing.
 - You need a **default fallback value** when the key is not found.
 
-Would you like more examples? 🚀
 ---
 
 # 8. Comprehensions
