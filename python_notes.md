@@ -657,6 +657,34 @@ print(word_count)
   func("first", "second", "extra1", "extra2", key1="value1", key2="value2")
   ```
 
+  Here's a concise example demonstrating all parameter types:
+
+```python
+def demo(a, b, *args, greeting="Hello", **kwargs):
+    print("Positional:", a, b)         # Required positional arguments
+    print("Extra positional:", args)   # Additional positional arguments (*args)
+    print("Greeting:", greeting)         # Keyword argument with a default value
+    print("Extra keyword:", kwargs)      # Additional keyword arguments (**kwargs)
+
+# Use case: mixing different argument types
+demo(10, 20, 30, 40, greeting="Hi", extra="value")
+```
+
+**Output:**
+```
+Positional: 10 20
+Extra positional: (30, 40)
+Greeting: Hi
+Extra keyword: {'extra': 'value'}
+```
+
+- **`a, b`**: Required positional arguments.
+- **`*args`**: Captures extra positional arguments.
+- **`greeting`**: A keyword parameter with a default value.
+- **`**kwargs`**: Captures extra keyword arguments.
+
+This pattern is useful when you need flexibility in the number and type of arguments your function accepts.
+
 ---
 
 # 11. Modules & Imports
