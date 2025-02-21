@@ -460,6 +460,57 @@ Use a `set` when:
       print(f"{key}: {value}")
   ```
 
+  ### 1. **Iterating Over Keys (Default Behavior)**
+  ```python
+  my_dict = {"name": "Taha", "age": 22, "city": "Lahore"}
+  
+  for key in my_dict:  # Default: Iterates over keys
+      print(key)
+  ```
+  **Output:**
+  ```
+  name
+  age
+  city
+  ```
+  By default, iterating over a dictionary only gives the **keys**.
+  
+  ---
+  
+  ### 2. **Iterating Over Values**
+  ```python
+  for value in my_dict.values():
+      print(value)
+  ```
+  **Output:**
+  ```
+  Taha
+  22
+  Lahore
+  ```
+  Here, `.values()` returns the dictionary's values.
+  
+  ---
+  
+  ### 3. **Iterating Over Key-Value Pairs (Using `.items()`)**
+  ```python
+  for key, value in my_dict.items():
+      print(f"{key}: {value}")
+  ```
+  **Output:**
+  ```
+  name: Taha
+  age: 22
+  city: Lahore
+  ```
+  `.items()` is necessary when you want **both the keys and values** in one iteration.
+  
+  ---
+  
+  ### **Conclusion**
+  - You **can** iterate over a dictionary without `.items()`, but you'll only get the **keys**.
+  - If you need both the **keys and values**, you **must** use `.items()`.
+
 The line:
 
 ```python
