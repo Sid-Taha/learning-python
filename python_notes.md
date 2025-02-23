@@ -713,9 +713,9 @@ print(word_count)
   ```python
   def demo(a, b, *args, greeting="Hello", **kwargs):
       print("Positional:", a, b)         # Required positional arguments
-      print("Extra positional:", args)   # Additional positional arguments (*args)
-      print("Greeting:", greeting)         # Keyword argument with a default value
-      print("Extra keyword:", kwargs)      # Additional keyword arguments (**kwargs)
+      print("Extra positional:", args)   # Arbitrary positional parameter (*args)
+      print("Greeting:", greeting)       # Keyword argument with a default value
+      print("Extra keyword:", kwargs)    # Arbitrary keyword parameter (**kwargs)
   
   # Use case: mixing different argument types
   demo(10, 20, 30, 40, greeting="Hi", extra="value")
