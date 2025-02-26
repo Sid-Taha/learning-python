@@ -738,22 +738,45 @@ print(word_count)
 
 ---
 
-# 11. Modules & Imports
+  # 11. Modules & Imports
+  
+  - **Definition:** Modules allow you to organize and reuse code across multiple files.
+  - **Examples:**
+    ```python
+    # Importing a module
+    import math
+    print(math.sqrt(25))  # Output: 5.0
+    
+    # Importing specific functions or using aliases
+    from math import pow
+    print(pow(2, 3))  # Output: 8
+    
+    import datetime as dt
+    print(dt.datetime.now())
+    ```
+  
+  - **Example of a Python script:**
+    ```python
+    def main():
+        print("Hello from project-01!")
+  
+    if __name__ == "__main__":
+        main()
+    ```
+  
+    **Explanation:**
+    - `def main():`: Defines a function named `main` that prints a message.
+    - `if __name__ == "__main__":`: This ensures the `main` function only runs when the script is executed directly, not when imported as a module.
+    - **Why use this?** It makes your script more modular, allowing you to reuse functions in other scripts without automatically running the code.
+  
+    **Example of importing and using the script:**
+    ```python
+    import project_01
+    # Nothing prints, but you can call project_01.main()
+    project_01.main()  # Output: Hello from project-01!
+    ```
 
-- **Definition:** Modules allow you to organize and reuse code across multiple files.
-- **Examples:**
-  ```python
-  # Importing a module
-  import math
-  print(math.sqrt(25))  # Output: 5.0
-  
-  # Importing specific functions or using aliases
-  from math import pow
-  print(pow(2, 3))  # Output: 8
-  
-  import datetime as dt
-  print(dt.datetime.now())
-  ```
+
 
 ---
 
