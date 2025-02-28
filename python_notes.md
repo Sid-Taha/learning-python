@@ -1018,11 +1018,4 @@ print(word_count)
 
 ---
 
-# 16. Conclusion
-
-- This guide has covered the **core concepts** of Python—from variables and data types to advanced topics like decorators and generators.
-- **Next steps:** Explore databases, APIs, machine learning, and web development frameworks (e.g., FastAPI, Django, Flask) to further enhance your skills.
-
----
-
 Happy coding!
