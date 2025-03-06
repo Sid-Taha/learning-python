@@ -845,104 +845,390 @@ Each example is simplified to focus on a single error type, making it easier to 
 
 # 13. Object-Oriented Programming (OOP)
 
-- **Definition:** A programming paradigm based on the concept of "objects" that contain data and methods.
-  
-### 13.1 Class & Object
-- **Example:**
+
+## Comprehensive Guide to Object-Oriented Programming (OOP) in Python
+
+Object-Oriented Programming (OOP) is a programming paradigm that organizes code into “objects” and “classes,” making it easier to manage and scale complex programs. This guide is designed for beginners and intermediate learners, offering clear explanations, real-world examples, and best practices.
+
+---
+
+### 1. Introduction to OOP
+
+### What is OOP?
+- **Definition:** OOP is a programming style that uses objects to represent data and methods to manipulate that data.
+- **Importance:** It helps in structuring code, promotes reusability, and makes it easier to maintain and extend applications.
+
+### Real-World Analogy
+- **Analogy:** Think of a class as a blueprint for a house. The blueprint defines the structure, while each house built from that blueprint (object) can have unique characteristics like color or furniture.
+- **Objects & Classes:** Just as houses built from the same blueprint share features but can differ in details, objects are instances of classes that share attributes and methods but can hold individual data.
+
+---
+
+### 2. Classes and Objects
+
+### Creating a Class and an Object
+A class is a template, and an object is an instance of that class.
+
+#### Example: Person Class
+
+```python
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name  # Instance attribute for name
+        self.age = age    # Instance attribute for age
+
+    def greet(self):
+        # Instance method that returns a greeting message
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
+# Creating an object of Person
+person1 = Person("Alice", 30)
+print(person1.greet())  # Output: Hello, my name is Alice and I am 30 years old.
+```
+
+---
+
+### 3. Inheritance
+
+Inheritance allows a class to inherit attributes and methods from another class.
+
+### Single Inheritance Example
+#### Example: Student Class Inheriting from Person
+```python
+class Student(Person):
+    def __init__(self, name: str, age: int, student_id: int):
+        # Call the parent class's __init__ method using super()
+        super().__init__(name, age)
+        self.student_id = student_id  # Additional attribute for Student
+
+    # Overriding the greet method from Person
+    def greet(self):
+        return f"Hello, I am {self.name}, {self.age} years old, and my student ID is {self.student_id}."
+
+student1 = Student("Bob", 20, 12345)
+print(student1.greet())  # Output: Hello, I am Bob, 20 years old, and my student ID is 12345.
+```
+
+### Multiple Inheritance
+Python supports multiple inheritance, where a class can inherit from more than one parent class. Use this feature cautiously to avoid complexity.
+
+### Multiple Inheritance Example: Father, Mother, and Child
+
+Multiple inheritance allows a class to inherit attributes and methods from more than one parent class. This can be useful to combine features from multiple classes.
+
+```python
+class Father:
+    def __init__(self, father_name: str):
+        self.father_name = father_name
+
+    def show_father_name(self):
+        return f"Father's Name: {self.father_name}"
+
+
+class Mother:
+    def __init__(self, mother_name: str):
+        self.mother_name = mother_name
+
+    def show_mother_name(self):
+        return f"Mother's Name: {self.mother_name}"
+
+
+class Child(Father, Mother):
+    def __init__(self, father_name: str, mother_name: str, child_name: str):
+        # Initialize both parent classes
+        Father.__init__(self, father_name)
+        Mother.__init__(self, mother_name)
+        self.child_name = child_name
+
+    def show_child_name(self):
+        return f"Child's Name: {self.child_name}"
+
+
+# Creating an instance of Child
+child = Child("John", "Emma", "Liam")
+
+# Accessing methods from both parents and the child class
+print(child.show_father_name())  # Output: Father's Name: John
+print(child.show_mother_name())  # Output: Mother's Name: Emma
+print(child.show_child_name())   # Output: Child's Name: Liam
+```
+
+### Key Points
+- **Method Resolution Order (MRO):** Python follows a specific order to resolve methods when using multiple inheritance. You can check it with `Child.__mro__`.
+- **Initialization:** Be sure to call the `__init__` method of each parent class explicitly to initialize their attributes.
+
+---
+
+### 4. Special (Magic) Methods
+
+Magic methods (also known as dunder methods) start and end with double underscores. They allow custom behavior for built-in operations.
+
+#### Example: Vector Class with Special Methods
+```python
+class Vector:
+    def __init__(self, x: float, y: float):
+        self.x = x  # x-coordinate
+        self.y = y  # y-coordinate
+
+    def __str__(self):
+        # Defines how the object is printed
+        return f"Vector({self.x}, {self.y})"
+
+    def __add__(self, other):
+        # Allows the use of the + operator with Vector objects
+        if isinstance(other, Vector):
+            return Vector(self.x + other.x, self.y + other.y)
+        return NotImplemented
+
+    def __call__(self):
+        # Allows the object to be called as a function
+        return (self.x, self.y)
+
+v1 = Vector(2, 3)
+v2 = Vector(4, 1)
+v3 = v1 + v2
+print(str(v3))   # Output: Vector(6, 4)
+print(v1())      # Output: (2, 3)
+```
+
+---
+
+### 5. The Four Pillars of OOP
+
+### Encapsulation Example: Public, Protected, and Private Attributes
+
+Encapsulation involves bundling data and methods within a class and restricting direct access to some attributes.
+
+```python
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name              # Public attribute
+        self._age = age              # Protected attribute (conventionally private)
+        self.__ssn = "123-45-6789"   # Private attribute
+
+    def get_ssn(self):
+        # Public method to access the private attribute
+        return self.__ssn
+
+    def set_age(self, age: int):
+        # Public method to modify protected attribute
+        if age > 0:
+            self._age = age
+
+    def get_age(self):
+        # Public method to access protected attribute
+        return self._age
+
+
+person = Person("Alice", 30)
+
+# Accessing public attribute
+print(person.name)            # Output: Alice
+
+# Accessing protected attribute (possible but not recommended directly)
+print(person._age)            # Output: 30
+
+# Accessing private attribute (through a getter method)
+print(person.get_ssn())       # Output: 123-45-6789
+
+# Modifying protected attribute using a public method
+person.set_age(35)
+print(person.get_age())       # Output: 35
+```
+
+### Key Points
+- **Public Attributes:** Accessible from anywhere (e.g., `name`).
+- **Protected Attributes:** Conventionally private, indicated by a single underscore (e.g., `_age`). Accessible but discouraged outside the class.
+- **Private Attributes:** Hidden from outside access, indicated by double underscores (e.g., `__ssn`). Access through public methods like getters and setters.
+
+
+### 5.1 Encapsulation
+Encapsulation involves bundling data (attributes) and methods that work on the data within one unit, e.g., a class. It also restricts direct access to some of the object's components.
+
+#### Example: Private Attributes with Getters and Setters
+```python
+class BankAccount:
+    def __init__(self, balance: float):
+        self.__balance = balance  # Private attribute using double underscore
+
+    def deposit(self, amount: float):
+        if amount > 0:
+            self.__balance += amount
+
+    def withdraw(self, amount: float):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+
+    def get_balance(self):
+        # Getter method to access the private attribute
+        return self.__balance
+
+account = BankAccount(1000)
+account.deposit(500)
+account.withdraw(200)
+print(account.get_balance())  # Output: 1300
+```
+
+### 5.2 Polymorphism
+Polymorphism allows methods to do different things based on the object calling them. This can be achieved through method overriding and dynamic behavior (duck typing).
+
+#### Example: Animal Classes with Method Overriding
+```python
+class Animal:
+    def speak(self):
+        # Base method meant to be overridden
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+def animal_sound(animal: Animal):
+    # Polymorphic function that works with any Animal subclass
+    print(animal.speak())
+
+dog = Dog()
+cat = Cat()
+animal_sound(dog)  # Output: Woof!
+animal_sound(cat)  # Output: Meow!
+```
+
+### 5.3 Abstraction
+Abstraction hides complex implementation details and exposes only the necessary parts. Python’s `abc` module facilitates this with abstract base classes.
+
+#### Example: Vehicle Abstract Base Class
+```python
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    @abstractmethod
+    def start(self):
+        # Abstract method that must be implemented by subclasses
+        pass
+
+class Car(Vehicle):
+    def start(self):
+        return "Car engine started!"
+
+# Uncommenting the following line would raise an error because Vehicle is abstract
+# vehicle = Vehicle()
+
+car = Car()
+print(car.start())  # Output: Car engine started!
+```
+
+---
+
+### 6. Class Variables and Methods
+
+### Class Variables
+Class variables are shared by all instances of a class.
+
+### Static Methods
+Static methods do not operate on an instance but are related to the class.
+
+#### Example: MathOperations Class
+```python
+class MathOperations:
+    pi = 3.14159  # Class variable
+
+    @staticmethod
+    def add(a: float, b: float) -> float:
+        # Static method for adding two numbers
+        return a + b
+
+print(MathOperations.pi)           # Output: 3.14159
+print(MathOperations.add(10, 20))  # Output: 30
+```
+
+---
+
+### 7. Additional Concepts
+
+### Callable Objects with `__call__`
+You can make an object behave like a function by defining the `__call__` method.
+
+#### Example: Counter Class
+```python
+class Counter:
+    def __init__(self):
+        self.count = 0
+
+    def __call__(self):
+        # Increment the counter each time the object is called
+        self.count += 1
+        return self.count
+
+counter = Counter()
+print(counter())  # Output: 1
+print(counter())  # Output: 2
+```
+
+### Inspecting Methods with `dir()`
+The built-in `dir()` function lists the attributes and methods of an object.
+```python
+print(dir(Counter))  # Lists all methods and attributes of the Counter class
+```
+
+### Importing and Using Classes Across Files
+Organize your code by separating classes into different files.
+
+#### Example:
+- **File: `person.py`**
   ```python
   class Person:
       def __init__(self, name: str):
           self.name = name
-      
-      def greet(self) -> str:
-          return f"Hello, {self.name}"
-  
-  p = Person("Taha")
-  print(p.greet())  # Output: Hello, Taha
-  ```
 
-### 13.2 Inheritance
-- **Example:**
+      def greet(self):
+          return f"Hello, {self.name}!"
+  ```
+- **File: `main.py`**
   ```python
-  class Student(Person):
-      def __init__(self, name: str, student_id: int):
-          super().__init__(name)
-          self.student_id = student_id
-  
-  student = Student("Ahmed", 101)
-  print(student.greet())  # Output: Hello, Ahmed
+  from person import Person  # Import the Person class from person.py
+
+  person = Person("Alice")
+  print(person.greet())  # Output: Hello, Alice!
   ```
 
-### 13.3 Special (Magic) Methods
-- **Example:**
-  ```python
-  class Number:
-      def __init__(self, value: int):
-          self.value = value
-      
-      def __add__(self, other):
-          return self.value + other.value
-  
-  n1 = Number(5)
-  n2 = Number(10)
-  print(n1 + n2)  # Output: 15 (Uses __add__)
-  ```
+---
 
-### 13.4 Four Pillars of OOP (Additional Examples)
+### 8. Best Practices
 
-#### Encapsulation
-- **Example:**
-  ```python
-  class Person:
-      def __init__(self, name):
-          self.__name = name  # Private attribute
-      
-      def get_name(self):
-          return self.__name
-  
-  p = Person("Taha")
-  print(p.get_name())  # Output: Taha
-  ```
+- **Naming Conventions:**  
+  - Use **PascalCase** for class names (e.g., `Person`, `BankAccount`).
+  - Use **snake_case** for methods and variable names (e.g., `greet`, `get_balance`).
 
-#### Polymorphism
-- **Example:**
-  ```python
-  class Animal:
-      def sound(self):
-          pass
-  
-  class Dog(Animal):
-      def sound(self):
-          return "Bark"
-  
-  class Cat(Animal):
-      def sound(self):
-          return "Meow"
-  
-  for animal in (Dog(), Cat()):
-      print(animal.sound())
-  # Output:
-  # Bark
-  # Meow
-  ```
+- **Encapsulation:**  
+  - Keep attributes private (using `__attribute`) if they should not be accessed directly.
+  - Provide getters and setters to control access when needed.
 
-#### Abstraction
-- **Example:**
-  ```python
-  from abc import ABC, abstractmethod
-  
-  class Vehicle(ABC):
-      @abstractmethod
-      def start(self):
-          pass
-  
-  class Car(Vehicle):
-      def start(self):
-          print("Car started")
-  
-  my_car = Car()
-  my_car.start()  # Output: Car started
-  ```
+- **Documentation:**  
+  - Use docstrings to document classes and methods for clarity.
+  - Inline comments help explain code snippets, especially for beginners.
+
+- **Code Organization:**  
+  - Separate classes into different modules (files) to enhance code readability and reusability.
+  - Follow the Single Responsibility Principle: each class should have a single purpose.
+
+---
+
+### 9. Conclusion
+
+### Summary of Key Points
+- **OOP Basics:** Understand classes and objects as the fundamental building blocks.
+- **Inheritance & Polymorphism:** Learn how to extend functionality and override methods.
+- **Encapsulation & Abstraction:** Keep data safe and simplify complex systems.
+- **Best Practices:** Use proper naming, document your code, and organize your project for maintainability.
+
+### When to Use OOP
+OOP is particularly beneficial in large-scale projects where modularity, reusability, and maintainability are crucial. It also helps in modeling real-world entities and their interactions.
+
+This guide provides a solid foundation for beginners, while the advanced topics and best practices will aid intermediate learners in mastering OOP in Python. Happy coding!
 
 ---
 
