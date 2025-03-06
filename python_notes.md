@@ -779,83 +779,69 @@ print(word_count)
 
 
 ---
-
+'''
 # 12. Error/Exception Handling
 
 - **Definition:** Handling errors gracefully using try-except blocks.
 - **Examples:**
-  ```python
-  try:
-      # Code that may raise an exception
-      result = 10 / 0
-  except ZeroDivisionError:
-      print("Cannot divide by zero")
-  except Exception as e:
-      print(f"An error occurred: {e}")
-  else:
-      print("No errors occurred")
-  finally:
-      print("This block always executes")
-  ```
-  Below is a concise example demonstrating several common error types using a single function. Each branch of the function intentionally triggers a different exception:
-  
-  ```python
-  def error_examples(choice: int):
-      try:
-          if choice == 1:
-              # ZeroDivisionError: dividing by zero
-              result = 10 / 0
-          elif choice == 2:
-              # IndexError: accessing an out-of-range list index
-              lst = [1, 2, 3]
-              result = lst[5]
-          elif choice == 3:
-              # KeyError: accessing a non-existent dictionary key
-              dct = {"a": 1, "b": 2}
-              result = dct["c"]
-          elif choice == 4:
-              # ValueError: invalid conversion (string to integer)
-              result = int("not a number")
-          elif choice == 5:
-              # FileNotFoundError: trying to open a file that doesn't exist
-              with open("non_existent_file.txt", "r") as file:
-                  result = file.read()
-          else:
-              # No error scenario
-              result = "No error occurred."
-      except ZeroDivisionError:
-          print("Caught ZeroDivisionError: Cannot divide by zero.")
-      except IndexError:
-          print("Caught IndexError: List index is out of range.")
-      except KeyError:
-          print("Caught KeyError: The key does not exist in the dictionary.")
-      except ValueError:
-          print("Caught ValueError: Invalid value for conversion.")
-      except FileNotFoundError:
-          print("Caught FileNotFoundError: File not found.")
-      except Exception as e:
-          print(f"Caught a general exception: {e}")
-      else:
-          print("No errors occurred. Result:", result)
-      finally:
-          print("This block always executes.\n")
-  
-  # Test each error type
-  for i in range(1, 7):
-      print(f"Test case {i}:")
-      error_examples(i)
-  ```
-  
-  ### **Use Cases for Each Error:**
-  
-  - **ZeroDivisionError:** When performing arithmetic operations that might involve division by zero.
-  - **IndexError:** When accessing list elements using indexes that may be out of bounds.
-  - **KeyError:** When trying to access dictionary keys that might not exist.
-  - **ValueError:** When converting values (like strings to numbers) that might be formatted incorrectly.
-  - **FileNotFoundError:** When attempting file operations on a file that may not be present.
-  
-  This example uses a loop to test each error scenario, providing clear output for which error was caught, and always executes the `finally` block regardless of the error outcome.
----
+
+### **1. Handling ZeroDivisionError:**
+```python
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Caught ZeroDivisionError: Cannot divide by zero.")
+```
+
+### **2. Handling IndexError:**
+```python
+try:
+    lst = [1, 2, 3]
+    result = lst[5]
+except IndexError:
+    print("Caught IndexError: List index is out of range.")
+```
+
+### **3. Handling KeyError:**
+```python
+try:
+    dct = {"a": 1, "b": 2}
+    result = dct["c"]
+except KeyError:
+    print("Caught KeyError: The key does not exist in the dictionary.")
+```
+
+### **4. Handling ValueError:**
+```python
+try:
+    result = int("not a number")
+except ValueError:
+    print("Caught ValueError: Invalid value for conversion.")
+```
+
+### **5. Handling FileNotFoundError:**
+```python
+try:
+    with open("non_existent_file.txt", "r") as file:
+        result = file.read()
+except FileNotFoundError:
+    print("Caught FileNotFoundError: File not found.")
+```
+
+### **6. Raising a Custom Error:**
+```python
+class CustomError(Exception):
+    pass
+
+try:
+    raise CustomError("This is a custom error message.")
+except CustomError as e:
+    print(f"Caught CustomError: {e}")
+```
+
+Each example is simplified to focus on a single error type, making it easier to understand and experiment with individually. Let me know if you’d like me to add more examples or explanations! 🚀
+'''
+
 
 # 13. Object-Oriented Programming (OOP)
 
